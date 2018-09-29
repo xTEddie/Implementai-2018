@@ -7,7 +7,7 @@ class VideoAdmin(admin.ModelAdmin):
     list_display = ('id', 'path')
 
 class VideoFrameAdmin(admin.ModelAdmin):
-    list_display = ('id', 'video', 'violence_status')
+    list_display = ('id', 'video', 'current_second', 'violence_status')
 
 admin.site.register(Video, VideoAdmin)
 admin.site.register(VideoFrame, VideoFrameAdmin)
