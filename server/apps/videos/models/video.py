@@ -6,3 +6,6 @@ def get_video_path(instance, filename):
 
 class Video(models.Model):
     path = models.FileField(upload_to=get_video_path, blank=False, null=False)
+
+    def __str__(self):
+        return self.path.url

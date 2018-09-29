@@ -14,11 +14,12 @@ class Command(BaseCommand):
             '1l7UxbwRGmAn61GUJ1rMy-ZlCihJs5wsX',
             '18ZVtge0ZbhaHHLCxFlJ2Ee_fiz7zaP-f'
         ] 
-        
+
         print("Populating videos to the DB...")
         video_paths = download_videos(directory, file_ids)
 
         for video_path in video_paths:
+            # Save video in DB
             video = Video(path=video_path)
             video.save()
         print("DONE!")
