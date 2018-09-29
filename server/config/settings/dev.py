@@ -6,6 +6,7 @@ ALLOWED_HOSTS = ['*']
 PROJECT_APPS = [
     'apps.ping.apps.PingConfig',
     'apps.accounts.apps.AccountsConfig',
+    'apps.videos.apps.VideosConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
