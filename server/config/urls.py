@@ -11,6 +11,6 @@ urlpatterns = [
     path(r'', include('apps.ping.urls')),
     path('admin/', admin.site.urls),
     path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path(r'', include_docs_urls(title='Capstone'))
+    path(r'', include_docs_urls(title='Implementai-2018'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
