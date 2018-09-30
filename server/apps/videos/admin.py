@@ -4,7 +4,7 @@ from apps.videos.models.videoframe import VideoFrame
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'path')
+    list_display = ('id', 'name', 'path')
 
 class VideoFrameAdmin(admin.ModelAdmin):
     list_display = ('id', 'video', 'current_second', 'violence_status')
