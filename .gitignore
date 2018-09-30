@@ -8,6 +8,7 @@ db.sqlite3
 
 # Videos
 server/videos/
+server/utils/videos/
 
 # Migrations
 **/migrations/*
