@@ -10,6 +10,9 @@ db.sqlite3
 server/videos/
 server/utils/videos/
 
+# Models
+models/
+
 # Migrations
 **/migrations/*
 !**/migrations/__init__.py
