@@ -8,7 +8,7 @@ db.sqlite3
 
 # Videos
 server/videos/
-server/utils/videos/
+server/media/videos/
 
 # Models
 models/
