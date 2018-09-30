@@ -33,10 +33,11 @@ def save_response_content(response, destination):
             if chunk: # Filter out keep-alive new chunks
                 f.write(chunk)
 
-def download_videos(directory):
+def download_videos(directory, file_path=None):
     # Get file_infos from .json file
-    json_file_path = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), 'video_ids.json')
-    file_infos = json.load(open(json_file_path))
+    if not file_path:
+        file_path = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), 'video_ids.json')
+    file_infos = json.load(open(file_path))
 
     if not os.path.exists(directory):
         os.mkdir(directory)

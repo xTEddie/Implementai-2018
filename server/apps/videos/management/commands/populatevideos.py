@@ -1,6 +1,8 @@
+import os
 from django.core.management.base import BaseCommand, CommandError
 from utils.download_videos import download_videos
 from apps.videos.models.video import Video
+from django.conf import settings
 
 
 class Command(BaseCommand):
@@ -8,15 +10,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         directory = 'videos'
-        file_ids = [
-            '1xDPCQ4ntLeHOLTSY6710sHOBFNXyOxtw',
-            '1kGvPN3G6wnGTOCqcxAcGLBjgR_9GnX19',
-            '1l7UxbwRGmAn61GUJ1rMy-ZlCihJs5wsX',
-            '18ZVtge0ZbhaHHLCxFlJ2Ee_fiz7zaP-f'
-        ] 
-
         print("Populating videos to the DB...")
-        video_paths = download_videos(directory, file_ids)
+        file_path = os.path.join(settings.BASE_DIR, 'video_ids.json')
+        video_paths = download_videos(directory, file_path=file_path)
 
         for video_path in video_paths:
             # Save video in DB
