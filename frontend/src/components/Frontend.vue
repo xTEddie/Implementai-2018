@@ -100,10 +100,10 @@ export default {
     display: grid;
     padding-bottom: 5rem;
     padding-top: 0vh;
-    grid-template-columns: repeat(3, 30vw);
-    grid-template-rows: repeat(3, 30vw);
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
+    grid-template-columns: repeat(4, 24vw);
+    grid-template-rows: repeat(4, 20vw);
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
     overflow: hidden;
     justify-items: center;
     /* border: 2px solid #2B9DFF; */
@@ -115,6 +115,7 @@ video {
   margin:0;
   width:100%;
   height: 100%;
+  transition: all .5s;
 }
 
 .danger {
