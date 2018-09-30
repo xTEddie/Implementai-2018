@@ -12,7 +12,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         directory = 'videos'
         print("Populating videos to the DB...")
-        print(directory)
         file_path = os.path.join(settings.BASE_DIR, 'video_ids.json')
         video_paths = download_videos(directory, file_path=file_path)
 
