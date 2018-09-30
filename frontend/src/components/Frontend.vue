@@ -97,12 +97,13 @@ export default {
 .wrapper {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(4, 24vw);
-    grid-template-rows: repeat(4, 20vw);
+    grid-template-columns: repeat(3, 33vw);
+    grid-template-rows: repeat(3, 32vh);
     grid-column-gap: 2px;
     grid-row-gap: 2px;
     overflow: hidden;
     justify-items: center;
+    background-color:black;
     /* border: 2px solid #2B9DFF; */
 }
 
@@ -110,8 +111,8 @@ video {
   position: relative;
   overflow: hidden;
   margin:0;
-  width:100%;
-  height: auto;
+  width:auto;
+  height: 100%;
   transition: all .5s;
 }
 
@@ -121,7 +122,7 @@ video {
 }
 
 .grayscale {
-  -webkit-filter: grayscale(1);
-  filter: grayscale(1); 
+  -webkit-filter: grayscale(0.6);
+  filter: grayscale(0.6); 
 }
 </style>
