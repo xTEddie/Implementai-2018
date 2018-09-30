@@ -1,6 +1,9 @@
+import os
 from django.core.management.base import BaseCommand, CommandError
 from utils.download_videos import download_videos
 from apps.videos.models.video import Video
+from django.conf import settings
+from django.core.files import File
 
 
 class Command(BaseCommand):
@@ -8,20 +11,20 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         directory = 'videos'
-        file_ids = [
-            '1xDPCQ4ntLeHOLTSY6710sHOBFNXyOxtw',
-            '1kGvPN3G6wnGTOCqcxAcGLBjgR_9GnX19',
-            '1l7UxbwRGmAn61GUJ1rMy-ZlCihJs5wsX',
-            '18ZVtge0ZbhaHHLCxFlJ2Ee_fiz7zaP-f'
-        ] 
-
         print("Populating videos to the DB...")
-        video_paths = download_videos(directory, file_ids)
+        file_path = os.path.join(settings.BASE_DIR, 'video_ids.json')
+        video_data = download_videos(directory, file_path=file_path)
 
-        for video_path in video_paths:
+        for data in video_data:
             # Save video in DB
-            video = Video(path=video_path)
-            video.save()
+            local_file = open(data['destination'], 'rb')
+            djangofile = File(local_file)
+            video = Video(name=data['name'])        
+            try:
+                video.path.save(data['destination'].replace('videos/', ''), djangofile)
+            except:
+                pass
+            local_file.close()
         print("DONE!")
 
 

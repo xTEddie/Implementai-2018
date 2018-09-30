@@ -1,7 +1,5 @@
 <template>
 <div>
-  <button v-on:click="play_video()">Play All Videos</button>
-  <!-- <button v-on:click="toggle()">Toggle</button> -->
   <div class="wrapper">
     <video v-for="(vid,index) in videos" :class="(isViolent[index.toString()]) ? 'danger':'grayscale'" :key="index" loop>
       <source :src="vid.path" type="video/mp4">
@@ -25,10 +23,9 @@ export default {
         '0': false,
         '1': false,
         '2': false,
-        '3': false
+        '3': false,
+        '4': false,
       },
-      // isViolent: [true, true, false, true],
-      // isViolent_2: false
     }
   },
   props: {
@@ -71,25 +68,18 @@ export default {
           return this.video_data[i].violence_status
         }
       }
-    },
-    // toggle(){
-    //   // if (this.isViolent==true){
-    //   //   this.isViolent=false
-    //   // } else {
-    //   //   this.isViolent=true
-    //   // }
-    //   // console.log(this.isViolent)
-    //   if (this.isViolent[1]==true){
-    //     this.isViolent[1]=false
-    //   } else {
-    //     this.isViolent[1]=true
-    //   }
-    //   console.log(this.isViolent)
-    // }
+    }
   },
   created() {
     this.get_videos()
     this.get_video_data()
+  },
+  mounted() {
+    document.addEventListener("keydown", (e) => {
+      if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+          this.play_video()
+      }   
+    }) 
   }
 }
 </script>
@@ -98,12 +88,10 @@ export default {
 .wrapper {
     position: relative;
     display: grid;
-    padding-bottom: 5rem;
-    padding-top: 0vh;
-    grid-template-columns: repeat(3, 30vw);
-    grid-template-rows: repeat(3, 30vw);
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
+    grid-template-columns: repeat(4, 24vw);
+    grid-template-rows: repeat(4, 20vw);
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
     overflow: hidden;
     justify-items: center;
     /* border: 2px solid #2B9DFF; */
@@ -114,7 +102,8 @@ video {
   overflow: hidden;
   margin:0;
   width:100%;
-  height: 100%;
+  height: auto;
+  transition: all .5s;
 }
 
 .danger {
