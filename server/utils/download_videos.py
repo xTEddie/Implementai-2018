@@ -36,7 +36,7 @@ def save_response_content(response, destination):
 def download_videos(directory, file_path=None):
     # Get file_infos from .json file
     if not file_path:
-        file_path = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), 'video_ids.json')
+        file_path = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), 'video_ids_skeleton.json')
     file_infos = json.load(open(file_path))
 
     if not os.path.exists(directory):
