@@ -42,14 +42,17 @@ def download_videos(directory, file_path=None):
     if not os.path.exists(directory):
         os.mkdir(directory)
 
-    video_paths = list()
+    video_data = list()
     for file_info in file_infos:         
         video_file_name = '{}.mp4'.format(file_info['name'])
         destination = os.path.join(directory, video_file_name)                
         download_file_from_google_drive(file_info['id'], destination)
         print("Downloaded {}".format(destination))
-        video_paths.append(destination)        
-    return video_paths
+        video_data.append(dict(
+            destination=destination,
+            name=video_file_name
+        ))        
+    return video_data
 
 if __name__ == "__main__":
     directory = 'videos'

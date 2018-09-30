@@ -13,15 +13,15 @@ class Command(BaseCommand):
         directory = 'videos'
         print("Populating videos to the DB...")
         file_path = os.path.join(settings.BASE_DIR, 'video_ids.json')
-        video_paths = download_videos(directory, file_path=file_path)
+        video_data = download_videos(directory, file_path=file_path)
 
-        for video_path in video_paths:
+        for data in video_data:
             # Save video in DB
-            local_file = open(video_path, 'rb')
+            local_file = open(data['destination'], 'rb')
             djangofile = File(local_file)
-            video = Video()
+            video = Video(name=data['name'])        
             try:
-                video.path.save(video_path.replace('videos/', ''), djangofile)
+                video.path.save(data['destination'].replace('videos/', ''), djangofile)
             except:
                 pass
             local_file.close()
