@@ -14,12 +14,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         data_file_dir = os.path.dirname(settings.BASE_DIR)
-        data_file_path = os.path.join(data_file_dir, 'data', 'labelling', 'Output.txt')
+        data_file_path = os.path.join(data_file_dir, 'data', 'labelling', 'predicted_lables.txt')
 
         data = json.load(open(data_file_path))
         for d in data:
             time, name, value = d
-            video = Video.objects.get(name=name)
+            try:
+                video = Video.objects.get(name=name)
+            except:
+                continue
+
             video_frame = VideoFrame(video=video, current_second=float(time), violence_status=bool(value))
             video_frame.save()
 

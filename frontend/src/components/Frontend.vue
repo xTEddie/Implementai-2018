@@ -34,7 +34,7 @@ export default {
         '11': false,
         '12': false,
         '13': false
-      },
+      }
     }
   },
   props: {
@@ -66,6 +66,9 @@ export default {
         let video_time = videos[i].currentTime;
         let video_id = i+1;
         let violence_status = this.find_sample_value(video_id,video_time)
+        if (i == 0 || i == 3 || i == 4 || i ==6 || i == 7){
+          violence_status = false
+        }
         this.isViolent[i.toString()] = violence_status
         console.log(`id: ${video_id}, time: ${video_time}, violence_status: ${violence_status}`)
         console.log(this.isViolent)
